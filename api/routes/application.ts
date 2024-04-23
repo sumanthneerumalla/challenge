@@ -1,21 +1,22 @@
 import { Router } from 'express';
 import { validateRequest } from 'zod-express-middleware';
 import { z } from 'zod';
-import cors from 'cors';
 
 import * as Controllers from '../controllers/application';
 
-import applicationValidator from '../types/zodValidators/applicationValidator';
-import type Application  from '../types/modelTypes/applicationModel';
+import postApplicationValidator from '../types/zodValidators/postApplicationValidator';
+import putApplicationValidator from '../types/zodValidators/putApplicationValidator';
+
+import type Application from '../types/modelTypes/applicationModel';
 const routes = Router();
 
 routes.post('/',
     validateRequest({
-        body: applicationValidator,
+        body: postApplicationValidator,
     }),
     async (req, res) => {
 
-        const application : Application = applicationValidator.parse(req.body);
+        const application: Application = postApplicationValidator.parse(req.body);
         console.log("creating new application", application);
         const app = await Controllers.createApplication(application);
 
@@ -38,11 +39,16 @@ routes.get('/:id', async (req, res) => {
     });
 });
 
-routes.put('/:id', (req, res) => {
-    res.json({
-        message: `Update insurance application with id ${req.params.id}`,
+routes.put('/:id',
+    validateRequest({
+        body: putApplicationValidator,
+    }), (req, res) => {
+
+        console.log("updating application with data: ", req.body);
+        res.json({
+            message: `Update insurance application with id ${req.params.appId}`,
+        });
     });
-});
 
 routes.post('/:id/submit', (req, res) => {
     res.json({

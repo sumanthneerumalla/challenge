@@ -7,6 +7,7 @@ interface Application {
     streetAddress?: string;
     city?: string;
     state?: string;
+    zipcode?: number;
     vehicles?: [Vehicle, Vehicle?, Vehicle?]; //allow up to 3 vehicles per application
   }
 

@@ -5,7 +5,7 @@ import vehicleValidator from './vehicleValidator';
 const today = new Date();
 const maxBirthDate = new Date(today.getFullYear() - 16, today.getMonth(), today.getDate());
 
-const applicationValidator = z.object({
+const putApplicationValidator = z.object({
     firstName: z.string().optional(),
     lastName: z.string().optional(),
     dateOfBirth: z.date().max(maxBirthDate).optional(), //only allowed to be as young as 16 to have insurance
@@ -16,4 +16,4 @@ const applicationValidator = z.object({
     vehicles: z.array(vehicleValidator).nonempty().max(3).optional(), //allow up to 3 vehicles per application
   });
 
-export default applicationValidator;
+export default putApplicationValidator;

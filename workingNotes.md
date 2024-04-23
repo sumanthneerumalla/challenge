@@ -1,6 +1,14 @@
+04/22/2023
+- running into issues displaying already stored applications
+
+04/20/2023
+- Made Ui elements to accept all the personal information, need to add vehicles now, might have a list that i can edit or delete
+- I can add and edit vehicles now
+
 04/15/2023
 - Last made some changes to App.tsx to get parameter args, so i need to update the original create api to return that url, done
 - then i'll use a fetch call to get the application data from the get endpoint
+- did this
 
 04/08/2023
 - started over with hugo provided template instead of messing with trpc open api

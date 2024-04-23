@@ -31,7 +31,8 @@ model Application {
   dateOfBirth   DateTime?
   streetAddress String?
   city          String?
-  state         String?    
+  state         String?  
+  zipcode       Int?  
   vehicles      Vehicle[]
 
   createdAt DateTime @default(now())
